@@ -25,6 +25,12 @@ public interface GioHangReposity extends JpaRepository<GioHangEntity, Long> {
 			nativeQuery = true)
 	void deleteByIdKhachHang(Long idKH);
 	
+	@Transactional
+	@Modifying
+	@Query(value = "DELETE FROM dbo.GioHang WHERE MaKH=? AND MaSanPham=?",
+			nativeQuery = true)
+	void deleteSanPham(Long idKH,Long idSP);
+	
 	@Modifying
 	@Query(value = "UPDATE dbo.GioHang G SET G.SoLuong=? WHERE G.MaKH=? AND G.MaSanPham=?",
 			nativeQuery = true)

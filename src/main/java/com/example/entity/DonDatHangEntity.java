@@ -16,6 +16,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.*;
 
 @Entity
@@ -43,20 +46,25 @@ public class DonDatHangEntity {
     private int trangThai;
     
     @ManyToOne
+    @JsonIgnore
 	@JoinColumn(name ="MaNV",nullable = true, foreignKey = @ForeignKey(name="FK_DonDatHang_NhanVien"))
 	private NhanVienEntity nhanVienEntity;
     
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name ="MaKH",nullable = true, foreignKey = @ForeignKey(name="FK_DonDatHang_KhachHang"))
     private KhachHangEntity khachHangEntity;
     
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name ="MaShipper",nullable = true, foreignKey = @ForeignKey(name="FK_DonDatHang_Shipper"))
     private ShipperEntity shipperEntity;
     
+    @JsonIgnore
 	@OneToMany(mappedBy = "donDatHangEntity") 
 	private List<CTDDHEntity> ctddhEntities = new ArrayList<>();
 	
+    @JsonIgnore
 	@OneToOne(mappedBy = "donDatHangEntity")
 	private HoaDonEntity hoaDonEntity;
 	 

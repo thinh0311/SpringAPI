@@ -49,4 +49,13 @@ public class GioHangAPI {
 		}
 		return "Failure";
 	}
+	
+	@DeleteMapping("/{maKH}/{maSP}")
+	public String delete2( @PathVariable("maKH") Long idKH,@PathVariable("maSP") Long idSP) {
+		String response = service.deleteSanPham(idKH, idSP);
+		if (response=="Ok") {
+			return "Ok";
+		}
+		return "Failure";
+	}
 }

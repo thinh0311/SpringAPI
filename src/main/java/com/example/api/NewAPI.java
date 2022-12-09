@@ -12,7 +12,7 @@ public class NewAPI {
 
 	public String testAPI() {
 
-		return "success";
+		return "PRODUCTION V0.2";
 
 	}
 	

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.example.convert.Convert;
 import com.example.dto.*;
 import com.example.entity.*;
+import com.example.exception.SanPhamRespon;
 import com.example.reposity.*;
 
 @Service
@@ -76,6 +77,11 @@ public class SanPhamService implements ISanPhamService {
 			list2.add(dto);
 		}
 		return list2;
+	}
+	@Override
+	public List<SanPhamEntity> getSanPhamTrongGioHang(Long idKH) {
+		List<SanPhamEntity> list = sanPhamReposity.getSanPhamTrongGioHang(idKH);
+		return list;
 	}
 
 	

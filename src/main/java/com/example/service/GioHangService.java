@@ -74,5 +74,15 @@ public class GioHangService implements IGioHangService {
 		GioHangEntity entity = gioHangReposity.findByIdKhachHangAndSanPham(idKH, idSP);
 		return convert.toGioHangDTO(entity);
 	}
+	@Override
+	public String deleteSanPham(Long idKH, Long idSP) {
+		GioHangDTO sanPham = getOne(idKH,idSP);
+		if(sanPham.getMaSanPham()!=null) {
+			gioHangReposity.deleteSanPham(idKH, idSP);
+			return "Ok";
+		}
+		return "Failure";
+		
+	}
 	
 }

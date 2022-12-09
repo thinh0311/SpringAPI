@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.dto.*;
+import com.example.entity.SanPhamEntity;
+import com.example.exception.SanPhamRespon;
 import com.example.service.ISanPhamService;
 
 @RestController
@@ -28,6 +30,11 @@ public class SanPhamAPI {
 	@GetMapping("/GetByMaLoaiNuoc/{maLoaiNuoc}")
 	public List<SanPhamDTO> getByIdCategory(@PathVariable("maLoaiNuoc") Long id) {
 		return service.getByIdLoaiNuoc(id);
+	}
+	
+	@GetMapping("/GetSanPhamTrongGioHang/{maKH}")
+	public List<SanPhamEntity> getByIdCategory1(@PathVariable("maKH") Long id) {
+		return service.getSanPhamTrongGioHang(id);
 	}
 	
 	@GetMapping("/GetByNameOrDescribe/{text}")

@@ -137,4 +137,52 @@ public class Convert {
 		entity.setSoLuong(dto.getSoLuong());
 		return entity;
 	}
+	//dondathang
+	public DonDatHangDTO toDonDatHangDTO(DonDatHangEntity entity) {
+		DonDatHangDTO dto = new DonDatHangDTO();
+		dto.setMaDonHang(entity.getMaDonHang());
+		dto.setNgayLap(entity.getNgayLap());
+		dto.setMoTa(entity.getMoTa());
+		dto.setNguoiNhan(entity.getNguoiNhan());
+		dto.setDiaChi(entity.getDiaChi());
+		dto.setTrangThai(entity.getTrangThai());
+		dto.setMaKH(entity.getKhachHangEntity().getMaKH());
+		return dto;
+	}
+	
+	public DonDatHangEntity toDonDatHangEntity(DonDatHangDTO dto) {
+		DonDatHangEntity entity = new DonDatHangEntity();
+		entity.setNgayLap(dto.getNgayLap());
+		entity.setMoTa(dto.getMoTa());
+		entity.setNguoiNhan(dto.getNguoiNhan());
+		entity.setDiaChi(dto.getDiaChi());
+		entity.setTrangThai(dto.getTrangThai());
+		return entity;
+	}
+	
+	public DonDatHangEntity toDonDatHangEntity(DonDatHangDTO dto,DonDatHangEntity entity) {
+		entity.setTrangThai(dto.getTrangThai());
+		return entity;
+	}
+	//ctddh
+	public CTDDHDTO toCtddhdto(CTDDHEntity entity) {
+		CTDDHDTO dto = new CTDDHDTO();
+		dto.setId(entity.getId());
+		dto.setSoLuong(entity.getSoLuong());
+		dto.setDonGia(entity.getDonGia());
+		return dto;
+	}
+	
+	public CTDDHEntity toCtddhEntity(CTDDHDTO dto) {
+		CTDDHEntity entity = new CTDDHEntity();
+		entity.setDonGia(dto.getDonGia());
+		entity.setSoLuong(dto.getSoLuong());
+		return entity;
+	}
+	
+	public CTDDHEntity toCtddhEntity(CTDDHDTO dto,CTDDHEntity entity) {
+		entity.setSoLuong(dto.getSoLuong());
+		entity.setDonGia(dto.getDonGia());
+		return entity;
+	}
 }
