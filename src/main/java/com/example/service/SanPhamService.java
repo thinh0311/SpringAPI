@@ -2,6 +2,7 @@ package com.example.service;
 
 import java.util.*;
 
+import org.hibernate.annotations.Check;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -79,9 +80,87 @@ public class SanPhamService implements ISanPhamService {
 		return list2;
 	}
 	@Override
-	public List<SanPhamEntity> getSanPhamTrongGioHang(Long idKH) {
-		List<SanPhamEntity> list = sanPhamReposity.getSanPhamTrongGioHang(idKH);
-		return list;
+	public List<SanPhamRespon> getSanPhamTrongGioHang(Long idKH) {
+		List<Object[]> list =  sanPhamReposity.getSanPhamTrongGioHang(idKH);
+		List<SanPhamRespon> list2 = new ArrayList<>();
+		for (Object[] object1 : list) {
+			for (int i = 0; i<object1.length;i++) {
+				SanPhamRespon respon = new SanPhamRespon();
+				respon.setSoLuong(object1[0]);
+				respon.setMaSanPham(object1[1]);
+				respon.setDonGia(object1[2]);
+				respon.setHinhAnh(object1[3]);
+				respon.setMoTa(object1[4]);
+				respon.setTenSanPham(object1[5]);
+				respon.setGiamGia(object1[6]);
+				int check=0;
+				for (SanPhamRespon sanPhamRespon : list2) {
+					if(respon.getMaSanPham()==sanPhamRespon.getMaSanPham()) {
+						check=1;
+					}
+				}
+				if(check !=1) {
+					list2.add(respon);
+				}
+				
+			}
+		}
+		return list2;
+	}
+	@Override
+	public List<SanPhamRespon> getSanPhamKhuyenMai() {
+		List<Object[]> list =  sanPhamReposity.getSanPhamKhuyenMai();
+		List<SanPhamRespon> list2 = new ArrayList<>();
+		for (Object[] object1 : list) {
+			for (int i = 0; i<object1.length;i++) {
+				SanPhamRespon respon = new SanPhamRespon();
+				respon.setMaSanPham(object1[0]);
+				respon.setDonGia(object1[1]);
+				respon.setHinhAnh(object1[2]);
+				respon.setMoTa(object1[3]);
+				respon.setTenSanPham(object1[4]);
+				respon.setGiamGia(object1[5]);
+				int check=0;
+				for (SanPhamRespon sanPhamRespon : list2) {
+					if(respon.getMaSanPham()==sanPhamRespon.getMaSanPham()) {
+						check=1;
+					}
+				}
+				if(check !=1) {
+					list2.add(respon);
+				}
+				
+			}
+		}
+		return list2;
+	}
+	@Override
+	public List<SanPhamRespon> getSanPhamBanChay() {
+		List<Object[]> list =  sanPhamReposity.getSanPhamBanChay();
+		List<SanPhamRespon> list2 = new ArrayList<>();
+		for (Object[] object1 : list) {
+			for (int i = 0; i<object1.length;i++) {
+				SanPhamRespon respon = new SanPhamRespon();
+				respon.setMaSanPham(object1[0]);
+				respon.setDonGia(object1[1]);
+				respon.setHinhAnh(object1[2]);
+				respon.setMoTa(object1[3]);
+				respon.setTenSanPham(object1[4]);
+				respon.setGiamGia(object1[5]);
+				respon.setSoLuong(object1[6]);
+				int check=0;
+				for (SanPhamRespon sanPhamRespon : list2) {
+					if(respon.getMaSanPham()==sanPhamRespon.getMaSanPham()) {
+						check=1;
+					}
+				}
+				if(check !=1) {
+					list2.add(respon);
+				}
+				
+			}
+		}
+		return list2;
 	}
 
 	

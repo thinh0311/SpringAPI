@@ -33,8 +33,21 @@ public class SanPhamAPI {
 	}
 	
 	@GetMapping("/GetSanPhamTrongGioHang/{maKH}")
-	public List<SanPhamEntity> getByIdCategory1(@PathVariable("maKH") Long id) {
-		return service.getSanPhamTrongGioHang(id);
+	public List<SanPhamRespon> getByIdCategory1(@PathVariable("maKH") Long id) {
+		List<SanPhamRespon> list = service.getSanPhamTrongGioHang(id);
+		return list;
+	}
+	
+	@GetMapping("/GetSanPhamSaleKhung")
+	public List<SanPhamRespon> getByIdCategory2() {
+		List<SanPhamRespon> list = service.getSanPhamKhuyenMai();
+		return list;
+	}
+	
+	@GetMapping("/GetSanPhamBanChay")
+	public List<SanPhamRespon> getByIdCategory23() {
+		List<SanPhamRespon> list = service.getSanPhamBanChay();
+		return list;
 	}
 	
 	@GetMapping("/GetByNameOrDescribe/{text}")

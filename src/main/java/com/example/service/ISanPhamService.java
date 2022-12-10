@@ -13,5 +13,7 @@ public interface ISanPhamService {
 	public SanPhamDTO getOne(Long id);
 	public List<SanPhamDTO> getByIdLoaiNuoc(Long idCategory);
 	public List<SanPhamDTO> searchByNameOrDescribe(String text);
-	public List<SanPhamEntity> getSanPhamTrongGioHang(Long idKH);
+	public List<SanPhamRespon> getSanPhamTrongGioHang(Long idKH);
+	List<SanPhamRespon> getSanPhamKhuyenMai();
+	List<SanPhamRespon> getSanPhamBanChay();
 }

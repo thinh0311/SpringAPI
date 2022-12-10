@@ -4,11 +4,11 @@ import lombok.Data;
 
 @Data
 public class SanPhamRespon {
-	private int SoLuong;
-	private Long MaSanPham;
-	private float DonGia;
-	private String HinhAnh;
-	private String MoTa;
-	private String TenSanPham;
-	private String GiamGia;
+	private Object SoLuong;
+	private Object MaSanPham;
+	private Object DonGia;
+	private Object HinhAnh;
+	private Object MoTa;
+	private Object TenSanPham;
+	private Object GiamGia;
 }

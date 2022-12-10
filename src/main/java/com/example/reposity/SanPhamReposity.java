@@ -18,6 +18,30 @@ public interface SanPhamReposity extends JpaRepository<SanPhamEntity, Long> {
 			nativeQuery = true)
 	List<SanPhamEntity> search(String text);
 	
-	@Query(value = "CALL dbo.getSanPhamTrongGioHang(?);", nativeQuery = true)
-    List<SanPhamEntity> getSanPhamTrongGioHang(Long idKH);
+	@Query(value = "select GioHang.SoLuong, GioHang.MaSanPham,SanPham.DonGia,SanPham.HinhAnh, SanPham.MoTa, SanPham.TenSanPham, ISNULL(CTKM.PhanTramGiam,0)  \r\n"
+			+ "from GioHang \r\n"
+			+ "JOIN SanPham ON GioHang.MaSanPham = SanPham.MaSanPham\r\n"
+			+ "LEFT JOIN CTKM ON CTKM.MaSanPham = GioHang.MaSanPham \r\n"
+			+ "LEFT JOIN KhuyenMai ON KhuyenMai.MaKM=CTKM.MaKM and KhuyenMai.NgayBatDau <= GETDATE() and KhuyenMai.NgayKetThuc >= GETDATE()\r\n"
+			+ "WHERE GioHang.MaKH=?", nativeQuery = true)
+    List<Object[]> getSanPhamTrongGioHang(Long idKH);
+    
+    @Query(value = "select TOP(6) SanPham.MaSanPham, SanPham.DonGia, SanPham.HinhAnh, SanPham.MoTa, SanPham.TenSanPham , CTKM.PhanTramGiam\r\n"
+    		+ "from SanPham\r\n"
+    		+ "JOIN CTKM ON CTKM.MaSanPham = SanPham.MaSanPham and CTKM.PhanTramGiam >=30\r\n"
+    		+ "JOIN KhuyenMai ON KhuyenMai.MaKM=CTKM.MaKM and KhuyenMai.NgayBatDau <= GETDATE() and KhuyenMai.NgayKetThuc >= GETDATE()"
+    		+ "order by ctkm.PhanTramGiam DESC", nativeQuery = true)
+    List<Object[]> getSanPhamKhuyenMai();
+    
+    
+    @Query(value = "select TOP(6) SanPham.MaSanPham, SanPham.DonGia, SanPham.HinhAnh, SanPham.MoTa, SanPham.TenSanPham , ISNULL(CTKM.PhanTramGiam,0),SUM(Ctddh.SoLuong) as TongSoLuong\r\n"
+    		+ "from SanPham\r\n"
+    		+ "JOIN ctddh on SanPham.MaSanPham=Ctddh.MaSanPham\r\n"
+    		+ "LEFT JOIN CTKM ON CTKM.MaSanPham = SanPham.MaSanPham\r\n"
+    		+ "LEFT JOIN KhuyenMai ON KhuyenMai.MaKM=CTKM.MaKM and KhuyenMai.NgayBatDau <= GETDATE() and KhuyenMai.NgayKetThuc >= GETDATE() \r\n"
+    		+ "group by ctddh.soLuong,SanPham.MaSanPham, SanPham.DonGia, SanPham.HinhAnh, SanPham.MoTa, SanPham.TenSanPham , CTKM.PhanTramGiam\r\n"
+    		+ "order by SUM(ctddh.SoLuong) DESC ", nativeQuery = true)
+    List<Object[]> getSanPhamBanChay();
+    
+    
 }
