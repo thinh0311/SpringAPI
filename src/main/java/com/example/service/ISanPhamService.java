@@ -13,7 +13,7 @@ public interface ISanPhamService {
 	public SanPhamDTO getOne(Long id);
 	public List<SanPhamRespon> getByIdLoaiNuoc(Long idCategory);
 	List<SanPhamRespon> getByIdProduct(Long id);
-	public List<SanPhamDTO> searchByNameOrDescribe(String text);
+	public List<SanPhamRespon> searchByNameOrDescribe(String text);
 	public List<SanPhamRespon> getSanPhamTrongGioHang(Long idKH);
 	List<SanPhamRespon> getSanPhamKhuyenMai();
 	List<SanPhamRespon> getSanPhamBanChay();

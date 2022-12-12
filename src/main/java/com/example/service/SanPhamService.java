@@ -114,12 +114,29 @@ public class SanPhamService implements ISanPhamService {
 		return list2;
 	}
 	@Override
-	public List<SanPhamDTO> searchByNameOrDescribe(String text) {
-		List<SanPhamEntity> list = sanPhamReposity.search(text);
-		List<SanPhamDTO> list2 = new ArrayList<>();
-		for (SanPhamEntity entity : list) {
-			SanPhamDTO dto = convert.toDTOSanPham(entity);
-			list2.add(dto);
+	public List<SanPhamRespon> searchByNameOrDescribe(String text) {
+		List<Object[]> list =  sanPhamReposity.search(text);
+		List<SanPhamRespon> list2 = new ArrayList<>();
+		for (Object[] object1 : list) {
+			for (int i = 0; i<object1.length;i++) {
+				SanPhamRespon respon = new SanPhamRespon();
+				respon.setMaSanPham(object1[0]);
+				respon.setDonGia(object1[1]);
+				respon.setHinhAnh(object1[2]);
+				respon.setMoTa(object1[3]);
+				respon.setTenSanPham(object1[4]);
+				respon.setGiamGia(object1[5]);
+				int check=0;
+				for (SanPhamRespon sanPhamRespon : list2) {
+					if(respon.getMaSanPham()==sanPhamRespon.getMaSanPham()) {
+						check=1;
+					}
+				}
+				if(check !=1) {
+					list2.add(respon);
+				}
+				
+			}
 		}
 		return list2;
 	}

@@ -51,7 +51,7 @@ public class SanPhamAPI {
 	}
 	
 	@GetMapping("/GetByNameOrDescribe/{text}")
-	public List<SanPhamDTO> getByNameOrDescribe(@PathVariable("text") String text) {
+	public List<SanPhamRespon> getByNameOrDescribe(@PathVariable("text") String text) {
 		return service.searchByNameOrDescribe(text);
 	}
 	

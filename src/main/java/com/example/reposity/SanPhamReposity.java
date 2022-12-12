@@ -27,9 +27,13 @@ public interface SanPhamReposity extends JpaRepository<SanPhamEntity, Long> {
 			nativeQuery = true)
 	List<Object[]> findByIdLoaiNuoc(Long idCategory);
 	
-	@Query(value = "SELECT * FROM dbo.SanPham WHERE TenSanPham like %?1% OR MoTa like %?1%",
+	@Query(value = "select SanPham.MaSanPham, SanPham.DonGia, SanPham.HinhAnh, SanPham.MoTa, SanPham.TenSanPham , ISNULL(CTKM.PhanTramGiam,0) as GiamGia "
+				+ "from SanPham "
+				+ "LEFT JOIN CTKM ON CTKM.MaSanPham = SanPham.MaSanPham "
+				+ "LEFT JOIN KhuyenMai ON KhuyenMai.MaKM=CTKM.MaKM and KhuyenMai.NgayBatDau <= GETDATE() and KhuyenMai.NgayKetThuc >= GETDATE() "
+				+ "WHERE SanPham.TenSanPham like %?1% OR SanPham.MoTa like %?1%",
 			nativeQuery = true)
-	List<SanPhamEntity> search(String text);
+	List<Object[]> search(String text);
 	
 	@Query(value = "select GioHang.SoLuong, GioHang.MaSanPham,SanPham.DonGia,SanPham.HinhAnh, SanPham.MoTa, SanPham.TenSanPham, ISNULL(CTKM.PhanTramGiam,0)  \r\n"
 			+ "from GioHang \r\n"
