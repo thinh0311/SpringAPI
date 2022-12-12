@@ -11,7 +11,7 @@ public interface ISanPhamService {
 	public String delete(Long id);
 	public List<SanPhamDTO> getAll();
 	public SanPhamDTO getOne(Long id);
-	public List<SanPhamDTO> getByIdLoaiNuoc(Long idCategory);
+	public List<SanPhamRespon> getByIdLoaiNuoc(Long idCategory);
 	public List<SanPhamDTO> searchByNameOrDescribe(String text);
 	public List<SanPhamRespon> getSanPhamTrongGioHang(Long idKH);
 	List<SanPhamRespon> getSanPhamKhuyenMai();

@@ -28,7 +28,7 @@ public class SanPhamAPI {
 	}
 	
 	@GetMapping("/GetByMaLoaiNuoc/{maLoaiNuoc}")
-	public List<SanPhamDTO> getByIdCategory(@PathVariable("maLoaiNuoc") Long id) {
+	public List<SanPhamRespon> getByIdCategory(@PathVariable("maLoaiNuoc") Long id) {
 		return service.getByIdLoaiNuoc(id);
 	}
 	
