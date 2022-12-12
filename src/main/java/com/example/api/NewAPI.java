@@ -35,7 +35,7 @@ public class NewAPI {
 
 	@GetMapping("/Email/SendOTP/{email}")
 	public int sendOTP(@PathVariable("email") String email) throws AddressException, MessagingException, IOException {
-		int OTP = new Random().nextInt(100000, 999999);
+		int OTP = (int) Math.floor(((Math.random() * 8999999) + 1000000));
 		String text = "Ma xac thuc cua ban la: " + OTP;
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
