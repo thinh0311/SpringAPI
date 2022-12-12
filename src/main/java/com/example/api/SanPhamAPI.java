@@ -56,8 +56,8 @@ public class SanPhamAPI {
 	}
 	
 	@GetMapping("/{maSanPham}")
-	public SanPhamDTO getOne(@PathVariable("maSanPham") Long id) {
-		return service.getOne(id);
+	public List<SanPhamRespon> getOne(@PathVariable("maSanPham") Long id) {
+		return service.getByIdProduct(id);
 	}
 	
 	@PutMapping("/{maSanPham}")

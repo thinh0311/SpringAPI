@@ -60,6 +60,33 @@ public class SanPhamService implements ISanPhamService {
 		return convert.toDTOSanPham(entity);
 	}
 	@Override
+	public List<SanPhamRespon> getByIdProduct(Long id) {
+		List<Object[]> list =  sanPhamReposity.findByIdProduct(id);
+		List<SanPhamRespon> list2 = new ArrayList<>();
+		for (Object[] object1 : list) {
+			for (int i = 0; i<object1.length;i++) {
+				SanPhamRespon respon = new SanPhamRespon();
+				respon.setMaSanPham(object1[0]);
+				respon.setDonGia(object1[1]);
+				respon.setHinhAnh(object1[2]);
+				respon.setMoTa(object1[3]);
+				respon.setTenSanPham(object1[4]);
+				respon.setGiamGia(object1[5]);
+				int check=0;
+				for (SanPhamRespon sanPhamRespon : list2) {
+					if(respon.getMaSanPham()==sanPhamRespon.getMaSanPham()) {
+						check=1;
+					}
+				}
+				if(check !=1) {
+					list2.add(respon);
+				}
+				
+			}
+		}
+		return list2;
+	}
+	@Override
 	public List<SanPhamRespon> getByIdLoaiNuoc(Long idCategory) {
 		List<Object[]> list =  sanPhamReposity.findByIdLoaiNuoc(idCategory);
 		List<SanPhamRespon> list2 = new ArrayList<>();
