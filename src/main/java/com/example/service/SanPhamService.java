@@ -126,7 +126,6 @@ public class SanPhamService implements ISanPhamService {
 				respon.setMoTa(object1[3]);
 				respon.setTenSanPham(object1[4]);
 				respon.setGiamGia(object1[5]);
-				respon.setId(object1[6]);
 				int check=0;
 				for (SanPhamRespon sanPhamRespon : list2) {
 					if(respon.getMaSanPham()==sanPhamRespon.getMaSanPham()) {
@@ -155,6 +154,7 @@ public class SanPhamService implements ISanPhamService {
 				respon.setMoTa(object1[4]);
 				respon.setTenSanPham(object1[5]);
 				respon.setGiamGia(object1[6]);
+				respon.setId(object1[7]);
 				int check=0;
 				for (SanPhamRespon sanPhamRespon : list2) {
 					if(respon.getMaSanPham()==sanPhamRespon.getMaSanPham()) {
