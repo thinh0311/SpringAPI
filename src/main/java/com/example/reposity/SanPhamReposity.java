@@ -35,7 +35,7 @@ public interface SanPhamReposity extends JpaRepository<SanPhamEntity, Long> {
 			nativeQuery = true)
 	List<Object[]> search(String text);
 	
-	@Query(value = "select GioHang.SoLuong, GioHang.MaSanPham,SanPham.DonGia,SanPham.HinhAnh, SanPham.MoTa, SanPham.TenSanPham, ISNULL(CTKM.PhanTramGiam,0)  \r\n"
+	@Query(value = "select GioHang.SoLuong, GioHang.MaSanPham,SanPham.DonGia,SanPham.HinhAnh, SanPham.MoTa, SanPham.TenSanPham, ISNULL(CTKM.PhanTramGiam,0), GioHang.ID  \r\n"
 			+ "from GioHang \r\n"
 			+ "JOIN SanPham ON GioHang.MaSanPham = SanPham.MaSanPham\r\n"
 			+ "LEFT JOIN CTKM ON CTKM.MaSanPham = GioHang.MaSanPham \r\n"
