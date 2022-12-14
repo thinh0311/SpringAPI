@@ -41,6 +41,7 @@ public class CTDDHService implements ICTDDHService {
 			dto.setMaDonHang(entity.getDonDatHangEntity().getMaDonHang());
 			dto.setMaSanPham(entity.getSanPhamEntity().getMaSanPham());
 			dto.setTenSanPham(entity.getSanPhamEntity().getTenSanPham());
+			dto.setHinhAnh(entity.getSanPhamEntity().getHinhAnh());
 			list2.add(dto);
 		}
 		return list2;
@@ -52,6 +53,7 @@ public class CTDDHService implements ICTDDHService {
 		dto.setMaDonHang(entity.getDonDatHangEntity().getMaDonHang());
 		dto.setMaSanPham(entity.getSanPhamEntity().getMaSanPham());
 		dto.setTenSanPham(entity.getSanPhamEntity().getTenSanPham());
+		dto.setHinhAnh(entity.getSanPhamEntity().getHinhAnh());
 		return dto;
 	}
 	

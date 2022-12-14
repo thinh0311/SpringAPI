@@ -10,4 +10,5 @@ public class CTDDHDTO {
     private Long maDonHang;
     private Long maSanPham;
     private String tenSanPham;
+    private String hinhAnh;
 }
