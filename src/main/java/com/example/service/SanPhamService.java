@@ -27,13 +27,14 @@ public class SanPhamService implements ISanPhamService {
 		if(dto.getMaSanPham() != 0L) {
 			SanPhamEntity oldEntity = sanPhamReposity.findById(dto.getMaSanPham()).get();
 			entity = convert.toEntitySanPham(dto, oldEntity);
-			
+			entity.setLoaiNuocEntity(oldEntity.getLoaiNuocEntity());
 		}
 		else {
 			entity = convert.toEntitySanPham(dto);
+			LoaiNuocEntity category = loaiNuocReposity.findById(dto.getMaLoaiNuoc()).get();
+			entity.setLoaiNuocEntity(category);
 		}
-		LoaiNuocEntity category = loaiNuocReposity.findById(dto.getMaLoaiNuoc()).get();
-		entity.setLoaiNuocEntity(category);
+		
 		entity = sanPhamReposity.save(entity);
 		
 		return convert.toDTOSanPham(entity);
