@@ -10,7 +10,7 @@ import com.example.exception.SanPhamRespon;
 
 @Repository
 public interface SanPhamReposity extends JpaRepository<SanPhamEntity, Long> {
-	@Query(value = "select SanPham.MaSanPham, SanPham.DonGia, SanPham.HinhAnh, SanPham.MoTa, SanPham.TenSanPham , ISNULL(CTKM.PhanTramGiam,0) as GiamGia\r\n"
+	@Query(value = "select SanPham.MaSanPham, SanPham.DonGia, SanPham.HinhAnh, SanPham.MoTa, SanPham.TenSanPham , ISNULL(CTKM.PhanTramGiam,0) as GiamGia, SanPham.MaLoaiNuoc\r\n"
 			+ "from SanPham\r\n"
 			+ "LEFT JOIN CTKM ON CTKM.MaSanPham = SanPham.MaSanPham\r\n"
 			+ "LEFT JOIN KhuyenMai ON KhuyenMai.MaKM=CTKM.MaKM and KhuyenMai.NgayBatDau <= GETDATE() and KhuyenMai.NgayKetThuc >= GETDATE() \r\n"
