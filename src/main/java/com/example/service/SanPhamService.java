@@ -27,7 +27,6 @@ public class SanPhamService implements ISanPhamService {
 		if(dto.getMaSanPham() != 0L) {
 			SanPhamEntity oldEntity = sanPhamReposity.findById(dto.getMaSanPham()).get();
 			entity = convert.toEntitySanPham(dto, oldEntity);
-			entity.setMaLoaiNuoc(oldEntity.getLoaiNuocEntity().getMaLoaiNuoc());
 			
 		}
 		else {
