@@ -60,5 +60,32 @@ public interface SanPhamReposity extends JpaRepository<SanPhamEntity, Long> {
     		+ "order by SUM(ctddh.SoLuong) DESC ", nativeQuery = true)
     List<Object[]> getSanPhamBanChay();
     
+//    @Query(value = "DELCLARE @tempdate DATE"
+//    			 + "DECLARE @start = ? DATE"
+//    			 + "DECLARE @end = ? DATE "
+//    			 + "SET @tempdate = DATEADD(month,-1,@start) "
+//    			 + "CREATE TABLE #TEMP ( ThangNam DATE) "
+//    			 + "WHILE @tempdate <= @end "
+//    			 + "BEGIN "
+//    			 	+ "INSERT #TEMP(ThangNam) VALUES(DATEADD(month,1,@tempdate)) "
+//    			 	+ "SET @tempdate = DATEADD(month,1,@tempdate) "
+//    			 	+ "IF(MONTH(@tempdate) = MONTH(@end)) " 
+//    			 		+"BEGIN "
+//    			 			+"SET @tempdate = DATEADD(month,1,@tempdate) "
+//    			 		+ "END "
+//    			 + "END "
+//    			 + "SELECT CONCAT(M.THANG,'-',M.NAM) as THANGNAM, ISNULL(DH.DonGia*DH.SoLuong, 0) as TONGTIEN "
+//    			 + "FROM (SELECT FORMAT(THANGNAM,'yyyy') as NAM, FORMAT(THANGNAM, 'MM') as THANG from #TEMP) as M "
+//    			 	+ "LEFT JOIN "
+//    			 	+ "(SELECT FORMAT(DDH.NgayLap,'yyyy') as NAM, FORMAT(DDH.NgayLap,'MM) as THANG, CTDDH.SoLuong as SoLuong, CTDDH.DonGia as Don Gia "
+//    			 	+ "FROM (SELECT MaDonHang, NgayLap FROM DonDatHang as DDH WHERE NgayLap BETWEEN @start and AND @end) DDH, CTDDH "
+//    			 	+ "WHERE DDH.MaDonHang = CTDDH.MaDonHang) DH"
+//    			 	+ "ON M.THANG =  DH.THANG and M.NAM=DH.NAM"
+//    			 	+ "GROUP BY M.THANG, M.NAM"
+//    			 	+ "ORDER BY M.NAM ASC, M.THANG ASC", nativeQuery = true)
+//    List<Object[]> thongKeTheoThang();
+    
+    
+    
     
 }
