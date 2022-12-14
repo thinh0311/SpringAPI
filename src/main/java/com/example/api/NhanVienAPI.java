@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.dto.*;
+import com.example.reposity.NhanVienReposity;
 import com.example.service.*;
 
 @RestController
@@ -14,6 +15,8 @@ public class NhanVienAPI {
 	
 	@Autowired
 	private INhanVienService service;
+	@Autowired
+	private IKhachHangService khService;
 	
 	@PostMapping("")
 	public NhanVienDTO add(@RequestBody NhanVienDTO dto) {
@@ -51,5 +54,30 @@ public class NhanVienAPI {
 	public String delete( @PathVariable("maNV") Long id) {
 		service.delete(id);
 		return "Ok";
+	}
+	
+	@GetMapping("/ThongKeTheoNam/{start}/{end}")
+	public List<StatisticDTO> getOne1(@PathVariable("start") String start,@PathVariable("end") String end) {
+		return service.statiticByYear(start,end);
+	}
+	
+	@GetMapping("/ThongKeTheoThang/{start}/{end}")
+	public List<StatisticDTO> getOne12(@PathVariable("start") String start,@PathVariable("end") String end) {
+		return service.statiticByMonth(start,end);
+	}
+	
+	@GetMapping("/ThongKeTheoNgay/{start}/{end}")
+	public List<StatisticDTO> getOne11(@PathVariable("start") String start,@PathVariable("end") String end) {
+		return service.statiticByDay(start,end);
+	}
+	
+	@GetMapping("/ThongKeKhachhang")
+	public int statistic1() {
+		List<KhachHangDTO> list = khService.getAll();
+		int dem = 0;
+		for (KhachHangDTO khachHangDTO : list) {
+			dem++;
+		}
+		return dem;
 	}
 }
