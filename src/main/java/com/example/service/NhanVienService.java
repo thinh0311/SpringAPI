@@ -213,7 +213,7 @@ public class NhanVienService implements INhanVienService {
 				respon.setHoTen(object1[0]);
 				respon.setEmail(object1[2]);
 				respon.setDiaChi(object1[1]);
-				respon.setSoTien(object1[2]);
+				respon.setSoTien(object1[3]);
 				
 				
 				int check=0;
