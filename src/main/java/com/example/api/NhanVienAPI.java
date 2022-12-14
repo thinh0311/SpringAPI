@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.dto.*;
+import com.example.exception.DonHangResponse;
+import com.example.exception.KhachHangResponse;
 import com.example.reposity.NhanVienReposity;
 import com.example.service.*;
 
@@ -17,6 +19,8 @@ public class NhanVienAPI {
 	private INhanVienService service;
 	@Autowired
 	private IKhachHangService khService;
+	@Autowired
+	private IDonDatHangService dhService;
 	
 	@PostMapping("")
 	public NhanVienDTO add(@RequestBody NhanVienDTO dto) {
@@ -71,7 +75,7 @@ public class NhanVienAPI {
 		return service.statiticByDay(start,end);
 	}
 	
-	@GetMapping("/ThongKeKhachhang")
+	@GetMapping("/ThongKeKhachHang")
 	public int statistic1() {
 		List<KhachHangDTO> list = khService.getAll();
 		int dem = 0;
@@ -79,5 +83,39 @@ public class NhanVienAPI {
 			dem++;
 		}
 		return dem;
+	}
+	
+	@GetMapping("/ThongKeTopKhachHang")
+	public List<KhachHangResponse> statistic12() {
+		List<KhachHangResponse> list = service.statiticTopUser();
+		
+		return list;
+	}
+	
+	@GetMapping("/ThongKeSanPham")
+	public int getOne11() {
+		return service.statiticProduct();
+	}
+	
+	@GetMapping("/ThongKeDonHang")
+	public int statistic2() {
+		List<DonHangResponse> list = dhService.getAll();
+		int dem = 0;
+		for (DonHangResponse khachHangDTO : list) {
+			dem++;
+		}
+		return dem;
+	}
+	
+	@GetMapping("/ThongKeTopDonHang")
+	public List<KhachHangResponse> statistic123() {
+		List<KhachHangResponse> list = service.statiticTopOrder();
+		
+		return list;
+	}
+	
+	@GetMapping("/ThongKeThuNhap")
+	public List<Object[]> getOne111() {
+		return service.statiticImcome();
 	}
 }

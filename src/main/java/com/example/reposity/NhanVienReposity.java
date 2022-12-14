@@ -34,4 +34,28 @@ public interface NhanVienReposity extends JpaRepository<NhanVienEntity, Long> {
 			+ "where D.MaDonHang=C.MaDonHang and D.NgayLap between ? and ?\r\n"
 			+ "group by FORMAT(D.NgayLap,'dd/MM/yyyy')", nativeQuery = true)
 	List<Object[]> thongKeTheoNgay(String start, String end);
+	
+	@Query(value = "select CTDDH.MaSanPham\r\n"
+			+ "from Ctddh\r\n"
+			+ "group by ctddh.MaSanPham", nativeQuery = true)
+	List<Object[]> thongKeSanPham();
+	
+	@Query(value = "select SUM(dongia*soluong)\r\n"
+			+ "from Ctddh", nativeQuery = true)
+	List<Object[]> thongKeThuNhap();
+	
+	@Query(value = "select TOP(5) Khachhang.hoten,khachhang.diachi,khachhang.email, SUM(ctddh.soluong*dongia)\r\n"
+			+ "from dondathang,ctddh,khachhang\r\n"
+			+ "where khachhang.makh=dondathang.makh and dondathang.madonhang=ctddh.madonhang\r\n"
+			+ "group by khachhang.hoten,khachhang.diachi,khachhang.email\r\n"
+			+ "order by SUM(ctddh.soluong*dongia) DESC", nativeQuery = true)
+	List<Object[]> thongKetopkhachhang();
+	
+	@Query(value = "select TOP(5) dondathang.madonhang,khachhang.hoten,dondathang.ngaylap, dondathang.trangthai, SUM(ctddh.soluong*ctddh.dongia)\r\n"
+			+ "from khachhang,dondathang,ctddh\r\n"
+			+ "where khachhang.makh=dondathang.makh and dondathang.madonhang=ctddh.madonhang\r\n"
+			+ "group by dondathang.madonhang,khachhang.hoten,dondathang.ngaylap, dondathang.trangthai\r\n"
+			+ "order by SUM(ctddh.soluong*ctddh.dongia) DESC", nativeQuery = true)
+	List<Object[]> thongKetopdonHang();
+	
 }
