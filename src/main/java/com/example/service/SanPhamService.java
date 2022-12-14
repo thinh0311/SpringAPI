@@ -99,7 +99,6 @@ public class SanPhamService implements ISanPhamService {
 				respon.setMoTa(object1[3]);
 				respon.setTenSanPham(object1[4]);
 				respon.setGiamGia(object1[5]);
-				respon.setMaLoaiNuoc(object1[6]);
 				int check=0;
 				for (SanPhamRespon sanPhamRespon : list2) {
 					if(respon.getMaSanPham()==sanPhamRespon.getMaSanPham()) {

@@ -12,5 +12,4 @@ public class SanPhamRespon {
 	private Object TenSanPham;
 	private Object GiamGia;
 	private Object id;
-	private Object MaLoaiNuoc
 }
